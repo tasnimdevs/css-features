@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>Array List</title>
+  </head>
+  <body>
+    <h3>Member Information</h3>
+    <h5>Using Array</h5>
+    <p id="demo"></p>
+    <script>
+      const members = [
+        {
+          name: 'Hasan Tarek',
+          phone: '01810847',
+          address: 'Dhaka Bangladesh'
+        },
+        {
+          name: 'Mohammed Ali',
+          phone: '013094758',
+          address: 'Dhaka Bangladesh'
+        },
+        {
+          name: 'Shahed Billah',
+          phone: '01975334',
+          address: 'Dhaka Bangladesh'
+        },
+        {
+          name: 'Ruaify Hasan',
+          phone: '01797008',
+          address: 'Dhaka'
+        },
+        {
+          name: 'Rudaif Hasan',
+          phone: '01558182',
+          address: 'Dhaka '
+        }
+      ];
+
+      const demo = document.getElementById('demo');
+
+      for (let i = 0; i < members.length; i++) {
+        const member = members[i];
+        demo.innerHTML += `Name: ${member.name}, Phone: ${member.phone}, Address: ${member.address}<br>`;
+      }
+    </script>
+  </body>
+</html>
