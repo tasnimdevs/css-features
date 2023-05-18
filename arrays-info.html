@@ -4,61 +4,78 @@
 <head>
     <meta charset="UTF-8">
     <title>Array List</title>
+    <script src="https://cdn.tailwindcss.com"></script>
 </head>
 
 <body>
     <h3>Member Information</h3>
     <h5>Using Array hwkk</h5>
-    <ul id="demo"></ul>
-    <script>
+
+    <div class="w-2/3 mx-auto pt-20">
+        <div class="flex justify-between gap-10 items-center">
+          <ul id="demo" class="w-1/2"></ul>
+          <div id="showInfo" class="w-1/2">
+            <p> Name: <span id="name"></span></p>
+            <p> Phone: <span id="phone"></span> </p>
+            <p>Address: <span id="address"></span></p>
+          </div>
+        </div>
+      </div>
+      
+      <script>
         const members = [
-            {
-                name: 'Hasan Tarek',
-                phone: '01810847',
-                address: 'Dhaka Bangladesh'
-            },
-            {
-                name: 'Mohammed Ali',
-                phone: '013094758',
-                address: 'Dhaka Bangladesh'
-            },
-            {
-                name: 'Shahed Billah',
-                phone: '01975334',
-                address: 'Dhaka Bangladesh'
-            },
-            {
-                name: 'Ruaify Hasan',
-                phone: '01797008',
-                address: 'Dhaka'
-            },
-            {
-                name: 'Rudaif Hasan',
-                phone: '01558182',
-                address: 'Dhaka '
-            }
+          {
+            name: 'Hasan Tarek',
+            phone: '01810847',
+            address: 'Dhaka Bangladesh'
+          },
+          {
+            name: 'Mohammed Ali',
+            phone: '013094758',
+            address: 'Dhaka Bangladesh'
+          },
+          {
+            name: 'Shahed Billah',
+            phone: '01975334',
+            address: 'Dhaka Bangladesh'
+          },
+          {
+            name: 'Ruaify Hasan',
+            phone: '01797008',
+            address: 'Dhaka'
+          },
+          {
+            name: 'Rudaif Hasan',
+            phone: '01558182',
+            address: 'Dhaka '
+          }
         ];
-
+      
         const demo = document.getElementById('demo');
-
+       
+      
+    
         for (let i = 0; i < members.length; i++) {
-            const member = members[i];
-            const listItem = document.createElement('li');
-            listItem.textContent = member.name;
-            listItem.addEventListener('click', showValue);
-            demo.appendChild(listItem);
+          const member = members[i];
+          const listItem = document.createElement('li');
+          listItem.setAttribute("class", "cursor-pointer my-3 border hover:bg-gray-200 p-3");
+          listItem.textContent = member.name;
+          listItem.addEventListener('click', () => showValue(member));
+          demo.appendChild(listItem);
         }
 
-        function showValue() {
-            const name = this.textContent;
-            const member = members.find(member => member.name === name);
+        const nameElement = document.getElementById('name');
+        const phoneElement = document.getElementById('phone');
+        const addressElement = document.getElementById('address');
 
-            const phone = member.phone;
-            const address = member.address;
-            alert('Name: ' + name + '\nPhone Number: ' + phone + '\nAddress: ' + address);
+        function showValue(member) {
+          nameElement.textContent = member.name;
+          phoneElement.textContent = member.phone;
+          addressElement.textContent = member.address;
         }
 
-    </script>
+      </script>
+      
 </body>
 
 </html>
