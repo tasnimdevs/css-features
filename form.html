@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Form</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body>
+    <div class="max-w-md mx-auto bg-gray-100 rounded-lg shadow-md">
+        <form id="myForm" onsubmit="submitForm(event)" class="p-6">
+            <div class="p-4">
+                <label for="name" class="mb-2">Name:</label>
+                <input type="text" id="name" class="w-full p-2 border border-gray-300 rounded-md">
+            </div>
+
+            <div class="p-4">
+                <label for="email" class="mb-2">Email:</label>
+                <input type="text" id="email" class="w-full p-2 border border-gray-300 rounded-md">
+            </div>
+
+            <div class="p-4">
+                <label for="phone" class="mb-2">Phone:</label>
+                <input type="text" id="phone" class="w-full p-2 border border-gray-300 rounded-md">
+            </div>
+
+            <div class="p-4">
+                <input type="submit" value="Submit"
+                    class="w-full px-4 py-2 text-white bg-green-500 rounded-md cursor-pointer hover:bg-green-600">
+            </div>
+        </form>
+
+    </div>
+
+    <div id="output" class="max-w-md p-4 mx-auto bg-gray-100 rounded-lg shadow-md"> </div>
+
+    <script>
+    function submitForm(event) {
+  event.preventDefault(); 
+
+  var item1= document.getElementById("name").value;
+  var item2= document.getElementById("email").value;
+  var item3= document.getElementById("phone").value;
+
+  var output = document.getElementById("output");
+  output.innerHTML += "<p>" + item1 + "</p>";
+  output.innerHTML += "<p>" + item2 + "</p>";
+  output.innerHTML += "<p>" + item3 + "</p>";
+
+  document.getElementById("name").value = "";
+  document.getElementById("email").value = "";
+  document.getElementById("phone").value = "";
+}
+    </script>
+</body>
+
+</html>
