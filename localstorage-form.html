@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <title>Document</title>
+</head>
+
+<body>
+    <h1 class="max-w-md ">Local Storage Form</h1>
+    <div class="max-w-md mx-auto bg-gray-100 rounded-lg shadow-md">
+        <form id="myForm" class="p-6">
+            <div class="p-4">
+                <label for="name" class="mb-2">Name:</label>
+                <input type="text" id="name" name="name" class="w-full p-2 border border-gray-300 rounded-md">
+            </div>
+
+            <div class="p-4">
+                <label for="email" class="mb-2">Email:</label>
+                <input type="text" id="email" name="email" class="w-full p-2 border border-gray-300 rounded-md">
+            </div>
+
+            <div class="p-4">
+                <label for="phone" class="mb-2">Phone:</label>
+                <input type="text" id="phone" name="phone" class="w-full p-2 border border-gray-300 rounded-md">
+            </div>
+
+            <div class="p-4">
+                <label for="name" class="mb-2">Status:</label>
+                <input type="text" id="status" name="status" class="w-full p-2 border border-gray-300 rounded-md">
+            </div>
+
+            <div class="p-4">
+                <input type="submit" value="Submit"
+                    class="w-full px-4 py-2 text-white bg-green-500 rounded-md cursor-pointer hover:bg-green-600">
+            </div>
+        </form>
+
+    </div>
+
+    <div id="output" class="max-w-md p-4 mx-auto bg-gray-100 rounded-lg shadow-md">
+        <table class="w-full divide-y divide-gray-200">
+            <thead>
+                <tr>
+                    <th>SL</th>
+                    <th>Name</th>
+                    <th>Email</th>
+                    <th>Number</th>
+                    <th>Status</th>
+                </tr>
+            </thead>
+
+            <tbody class="bg-white divide-y divide-gray-200">
+                <tr>
+                    <td class="border py-4 px-6"></td>
+                    <td class="border py-4 px-6"></td>
+                    <td class="border py-4 px-6"></td>
+                    <td class="border py-4 px-6"></td>
+                    <td class="border py-4 px-6"></td>
+                </tr>
+            </tbody>
+
+        </table>
+    </div>
+
+
+
+    <script>
+        let data = JSON.parse(localStorage.getItem("profile"));
+        let output = document.getElementById('output').querySelector('tbody');
+
+        let htmlView = '';
+        if (data) {
+            htmlView += '<tr>' + data.map((item, index) => {
+                return `<td>${index + 1}</td>
+                    <td>${item.name}</td>
+                    <td>${item.email}</td>
+                    <td>${item.phone}</td>
+                    <td>${item.status}</td>`;
+
+            }).join('</tr><tr>') + '</tr>';
+
+            output.innerHTML = htmlView;
+        }
+        console.log(htmlView);
+
+
+        var form = document.getElementById('myForm');
+        form.addEventListener('submit', function (event) {
+            event.preventDefault();
+            // Get form data
+            var formData = new FormData(form);
+
+            // Convert form data to an object
+            var dataArr = {};
+            for (var pair of formData.entries()) {
+                dataArr[pair[0]] = pair[1];
+            }
+
+            console.log(dataArr);
+
+            data = data ?? [];
+            data.push(dataArr);
+
+            localStorage.setItem("profile", JSON.stringify(data));
+
+            console.log(data);
+        });
+
+    </script>
+</body>
+
+</html>
