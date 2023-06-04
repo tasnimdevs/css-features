@@ -30,7 +30,7 @@
 
             <div class="p-4">
                 <label for="name" class="mb-2">Status:</label>
-                <input type="text" id="status" name="status" class="w-full p-2 border border-gray-300 rounded-md">
+                <input type="checkbox" id="status" name="status">
             </div>
 
             <div class="p-4">
@@ -41,7 +41,7 @@
 
     </div>
 
-    <div id="output" class="max-w-md p-4 mx-auto bg-gray-100 rounded-lg shadow-md">
+    <div id="output" class="max-w-1/2 p-4 mx-auto bg-gray-100 rounded-lg shadow-md">
         <table class="w-full divide-y divide-gray-200">
             <thead>
                 <tr>
@@ -50,17 +50,11 @@
                     <th>Email</th>
                     <th>Number</th>
                     <th>Status</th>
-                </tr>
+                    <th>Action</th>
             </thead>
 
             <tbody class="bg-white divide-y divide-gray-200">
-                <tr>
-                    <td class="border py-4 px-6"></td>
-                    <td class="border py-4 px-6"></td>
-                    <td class="border py-4 px-6"></td>
-                    <td class="border py-4 px-6"></td>
-                    <td class="border py-4 px-6"></td>
-                </tr>
+
             </tbody>
 
         </table>
@@ -69,24 +63,33 @@
 
 
     <script>
-        let data = JSON.parse(localStorage.getItem("profile"));
-        let output = document.getElementById('output').querySelector('tbody');
-
-        let htmlView = '';
-        if (data) {
+        function htmlViewFunction(data){
+            let htmlView = '';
             htmlView += '<tr>' + data.map((item, index) => {
                 return `<td>${index + 1}</td>
                     <td>${item.name}</td>
                     <td>${item.email}</td>
                     <td>${item.phone}</td>
-                    <td>${item.status}</td>`;
+                    <td>${item.status}</td>
+                    <td> <button onclick="deleteItem(${index})" type="button" class="px-4 py-2 text-white bg-red-500 rounded-md cursor-pointer hover:bg-red-600"> Delete</button></td>`;
 
             }).join('</tr><tr>') + '</tr>';
-
-            output.innerHTML = htmlView;
+            return htmlView;
         }
-        console.log(htmlView);
 
+
+        let data = JSON.parse(localStorage.getItem("profile"));
+        let output = document.getElementById('output').querySelector('tbody');
+
+        if (data) {
+            output.innerHTML = htmlViewFunction(data);
+        }
+        function deleteItem(id) {
+            console.log(`Delete this ${id}`);
+            data.splice(id, 1);
+            localStorage.setItem("profile", JSON.stringify(data));
+            output.innerHTML = htmlViewFunction(data);
+        }
 
         var form = document.getElementById('myForm');
         form.addEventListener('submit', function (event) {
@@ -106,8 +109,8 @@
             data.push(dataArr);
 
             localStorage.setItem("profile", JSON.stringify(data));
+            output.innerHTML = htmlViewFunction(data);
 
-            console.log(data);
         });
 
     </script>
