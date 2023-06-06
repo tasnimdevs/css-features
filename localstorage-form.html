@@ -127,9 +127,11 @@
                 dataArr[pair[0]] = pair[1];
             }
 
+            //if edit id has value this will work 
             if (editId) {
                 data[editId] = dataArr;
 
+                //else edit id doesn't have value this will work
             }
             else {
                 data = data ?? [];
