@@ -34,8 +34,8 @@
             </div>
 
             <div class="p-4">
-                <input type="submit" value="Submit"
-                    class="w-full px-4 py-2 text-white bg-green-500 rounded-md cursor-pointer hover:bg-green-600">
+                <input type="submit" id="submitbutton" value="Submit"
+                    class=" w-full px-4 py-2 text-white bg-green-500 rounded-md cursor-pointer hover:bg-green-600">
             </div>
         </form>
 
@@ -60,28 +60,27 @@
         </table>
     </div>
 
-
-
     <script>
-        function htmlViewFunction(data){
-            let htmlView = '';
-            htmlView += '<tr>' + data.map((item, index) => {
-                return `<td>${index + 1}</td>
+        function htmlViewFunction(data) {
+            return data.map((item, index) => {
+                return `
+                <tr>
+                    <td>${index + 1}</td>
                     <td>${item.name}</td>
                     <td>${item.email}</td>
                     <td>${item.phone}</td>
                     <td>${item.status}</td>
-                    <td> <button onclick="deleteItem(${index})" type="button" class="px-4 py-2 text-white bg-red-500 rounded-md cursor-pointer hover:bg-red-600"> Delete</button></td>`;
-
-            }).join('</tr><tr>') + '</tr>';
-            return htmlView;
+                    <td> <button onclick="deleteItem(${index})" type="button" class="px-4 py-2 text-white bg-red-500 rounded-md cursor-pointer hover:bg-red-600"> Delete</button></td>
+                    <td> <button onclick="editItem(${index})" type="button" class="px-4 py-2 text-white bg-blue-500 rounded-md cursor-pointer hover:bg-blue-600"> Edit</button></td>
+                </tr>`;
+            }).join('');
         }
-
 
         let data = JSON.parse(localStorage.getItem("profile"));
         let output = document.getElementById('output').querySelector('tbody');
 
         if (data) {
+            console.log(htmlViewFunction(data));
             output.innerHTML = htmlViewFunction(data);
         }
         function deleteItem(id) {
@@ -91,8 +90,33 @@
             output.innerHTML = htmlViewFunction(data);
         }
 
+        function editItem(id) {
+            document.getElementById('name').value = data[id].name;
+            document.getElementById('email').value = data[id].email;
+            document.getElementById('phone').value = data[id].phone;
+            document.getElementById('status').value = data[id].status;
+            document.getElementById('submitbutton').value = 'Update';
+            //create an edit function -when click on edit button item will show in form
+
+
+            document.getElementById('myForm').setAttribute("data-editId", id);
+            //set an attribute for edit the data
+
+
+            const submitButton = document.getElementById('submitbutton');
+            submitButton.classList.add('bg-blue-500', 'hover:bg-blue-600');
+            submitButton.classList.remove('bg-green-500', 'hover:bg-green-600');
+            //change the color button when it's turn in blue
+
+        }
+
+
         var form = document.getElementById('myForm');
         form.addEventListener('submit', function (event) {
+
+            //get the data-editId attribute
+            var editId = form.getAttribute('data-editId');
+
             event.preventDefault();
             // Get form data
             var formData = new FormData(form);
@@ -123,6 +147,10 @@
     how to push object
     map 
     concat (+)
+    class set
+    set attribute
+    get attribute
+
 -->
 </body>
 
