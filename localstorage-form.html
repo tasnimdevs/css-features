@@ -94,7 +94,7 @@
             document.getElementById('name').value = data[id].name;
             document.getElementById('email').value = data[id].email;
             document.getElementById('phone').value = data[id].phone;
-            document.getElementById('status').value = data[id].status;
+            document.getElementById('status').checked = data[id].status;
             document.getElementById('submitbutton').value = 'Update';
             //create an edit function -when click on edit button item will show in form
 
@@ -127,10 +127,15 @@
                 dataArr[pair[0]] = pair[1];
             }
 
-            console.log(dataArr);
+            if (editId) {
+                data[editId] = dataArr;
 
-            data = data ?? [];
-            data.push(dataArr);
+            }
+            else {
+                data = data ?? [];
+                data.push(dataArr);
+            }
+
 
             localStorage.setItem("profile", JSON.stringify(data));
             output.innerHTML = htmlViewFunction(data);
