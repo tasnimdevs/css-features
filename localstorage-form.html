@@ -158,6 +158,34 @@
     set attribute
     get attribute
 
+      <style>
+        .slider-container {
+            width: 800px;
+            overflow: hidden;
+        }
+
+        .slider {
+            display: flex;
+            transition: transform 0.5s ease-in-out;
+        }
+
+        .slide {
+            flex: 0 0 800px;
+        }
+
+        .slide img {
+            width: 100%;
+        }
+    </style>
+
+        <script>
+        function slideTo(index) {
+            const slider = document.querySelector('.slider');
+            const slideWidth = document.querySelector('.slide').offsetWidth;
+            const offset = -index * slideWidth;
+            slider.style.transform = `translateX(${offset}px)`;
+        }
+    </script>
 -->
 </body>
 

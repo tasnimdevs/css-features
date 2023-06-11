@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <title>Image Slide</title>
+    <style>
+        .slider-container {
+            width: 500px;
+            margin: auto;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .slides {
+            width: 500px;
+            height: 300px;
+            position: relative;
+            display: flex;
+        }
+
+        .slide {
+            width: 500px;
+            position: absolute;
+            overflow: hidden;
+            transition: all 2s;
+            visibility: hidden;
+            opacity: 0;
+        }
+
+        .slide.show {
+            visibility: visible;
+            opacity: 1;
+        }
+
+        .slide img {
+            max-width: 100%;
+        }
+
+        .next_prev {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            z-index: 99;
+            top: 0;
+            left: 0;
+        }
+
+        .next_prev button {
+            width: 30%;
+            height: 100%;
+            position: absolute;
+        }
+
+        .next_prev button:hover {
+            background: rgba(0, 0, 0, .3);
+        }
+
+        .next_prev button.next {
+            right: 0;
+        }
+
+        .next_prev button.prev {
+            left: 0;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="slider-container">
+        <div class="slides">
+            <div id="image1" class="slide">
+                <img src="slideimg1.jpeg" alt="Image 1">
+            </div>
+            <div id="image2" class="slide">
+                <img src="slideimg2.jpeg" alt="Image 2">
+            </div>
+            <div id="image3" class="slide">
+                <img src="slideimg3.jpeg" alt="Image 3">
+            </div>
+            <div id="image4" class="slide">
+                <img src="slideimg4.jpeg" alt="Image 4">
+            </div>
+        </div>
+        <div class="next_prev">
+            <button class="next">Next</button>
+            <button class="prev">Prev</button>
+        </div>
+    </div>
+
+    <button onclick="slideTo(0)">Image 1</button>
+    <button onclick="slideTo(1)">Image 2</button>
+    <button onclick="slideTo(2)">Image 3</button>
+    <button onclick="slideTo(3)">Image 4</button>
+
+    <script>
+
+        const showSlides = (n, slideItems) => {
+            console.log(n, slideItems);
+            let i;
+
+            // n = n >= 1 && slideItems.length <= n ?  slideItems.length : 1;
+            if (n > slideItems.length) {
+                n = 1
+            }
+
+            if (n < 1) {
+                n = slideItems.length
+            }
+
+            for (i = 0; i < slideItems.length; i++) {
+                slideItems[i].classList.remove('show');
+            }
+
+            slideItems[n - 1].classList.add('show');
+
+        }
+
+        var slides = document.querySelectorAll('.slides .slide');
+        let slideIndex = 1;
+
+        showSlides(slideIndex, slides);
+
+        var prev = document.querySelector('.next_prev .prev');
+        var next = document.querySelector('.next_prev .next');
+
+        next.addEventListener('click', (e) => {
+            showSlides(slideIndex += 1, slides);
+        });
+
+        prev.addEventListener('click', (e) => {
+            showSlides(slideIndex -= 1, slides);
+        });
+
+        setInterval((index)=>{
+            showSlides(slideIndex += 1, slides);
+            console.log(index);
+        },3000)
+       
+
+    </script>
+
+</body>
+
+</html>
