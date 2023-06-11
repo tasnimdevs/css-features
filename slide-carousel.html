@@ -27,13 +27,17 @@
             position: absolute;
             overflow: hidden;
             transition: all 2s;
-            visibility: hidden;
-            opacity: 0;
+        }
+
+        .slide {
+            left: 100%;
         }
 
         .slide.show {
-            visibility: visible;
-            opacity: 1;
+            left: 0;
+        }
+        .slide.shown {
+            left: -100%;
         }
 
         .slide img {
@@ -91,31 +95,25 @@
         </div>
     </div>
 
-    <button onclick="slideTo(0)">Image 1</button>
-    <button onclick="slideTo(1)">Image 2</button>
-    <button onclick="slideTo(2)">Image 3</button>
-    <button onclick="slideTo(3)">Image 4</button>
+    
 
     <script>
 
-        const showSlides = (n, slideItems) => {
-            console.log(n, slideItems);
-            let i;
-
-            // n = n >= 1 && slideItems.length <= n ?  slideItems.length : 1;
+         const showSlides = (n, slideItems) => {
+            
             if (n > slideItems.length) {
-                n = 1
+                slideIndex = 1;
             }
 
             if (n < 1) {
-                n = slideItems.length
+                slideIndex = slideItems.length;
             }
-
-            for (i = 0; i < slideItems.length; i++) {
+            
+            for (let i = 0; i < slideItems.length; i++) {
                 slideItems[i].classList.remove('show');
             }
 
-            slideItems[n - 1].classList.add('show');
+            slideItems[slideIndex - 1].classList.add('show');
 
         }
 
@@ -136,8 +134,7 @@
         });
 
         setInterval((index)=>{
-            showSlides(slideIndex += 1, slides);
-            console.log(index);
+            // showSlides(slideIndex += 1, slides);
         },3000)
        
 
