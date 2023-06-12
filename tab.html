@@ -59,7 +59,9 @@
             let content = elem.children[1].children;
             for (let i = 0; i < navs.length; i++) {
                 navs[i].addEventListener('click',(e)=>{
+                    Array.from(navs).map(item => item.classList.remove('active'));
                     Array.from(content).map(item => item.style.display = 'none');
+                    navs[i].classList.add('active');
                     content[i].style.display = 'block';
                 })
             }   
