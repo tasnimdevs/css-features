@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+
+.content {
+    display: none;
+}
+
+    </style>
+</head>
+<body>
+    <h3>Tab Content</h3>
+
+    <div id="tabs">
+        <div class="btns">
+            <button class="tabopen active" onclick="tabOpen1">Tab 1</button>
+            <button class="tabopen" onclick="tabOpen2">Tab 2</button>
+            <button class="tabopen" onclick="tabOpen3">Tab 3</button>
+        </div>
+        <div id="content">
+            <div class="tab1 active"><p>
+                Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                 Aliquam magnam ea tenetur commodi ipsam rerum officia saepe mollitia?
+            </p></div>
+            <div class="tab2"><p> 
+                 Aliquam magnam ea tenetur commodi ipsam rerum officia saepe mollitia? Sequi, 
+                 sunt enim sint veniam voluptates illum velit. 
+                 Voluptates exercitationem molestiae dolor.
+            </p></div>
+            <div class="tab3"><p>
+                Sequi, 
+                 sunt enim sint veniam voluptates illum velit. 
+                 Voluptates exercitationem molestiae dolor.
+            </p></div>
+        </div>
+    </div>
+
+    <script>
+        var tabs = document.getElementById('tabs');
+        var btns = tabs.querySelector('.btns');
+        var btns = tabs.getElementById('content');
+        
+        document.getElementById('tab1Btn').classList.add('active');
+
+
+    </script>
+</body>
+</html>
