@@ -7,9 +7,18 @@
     <title>Document</title>
 
     <style>
-        .btns button{background: rgba(0,0,0,.2);border: none;cursor: pointer; padding: 3px 10px;}
-        .btns button.active{background: rgba(0,0,0,.5);}
-        .content > *:not(.active){
+        .btns button {
+            background: rgba(0, 0, 0, .2);
+            border: none;
+            cursor: pointer;
+            padding: 3px 10px;
+        }
+
+        .btns button.active {
+            background: rgba(0, 0, 0, .5);
+        }
+
+        .content>*:not(.active) {
             display: none;
         }
     </style>
@@ -53,21 +62,19 @@
         var btns = tabs.querySelector('.btns');
 
         // console.log(tabs);
-        // document.getElementById('tab1Btn').classList.add('active');
         function tabs_fn(elem) {
             let navs = elem.children[0].children;
             let content = elem.children[1].children;
             for (let i = 0; i < navs.length; i++) {
-                navs[i].addEventListener('click',(e)=>{
+                navs[i].addEventListener('click', (e) => {
                     Array.from(content).map(item => item.classList.remove('active'));
                     Array.from(navs).map(item => item.classList.remove('active'));
                     navs[i].classList.add('active');
                     content[i].classList.add('active');
                 })
-            }   
+            }
         };
         tabs_fn(tabs);
-
     </script>
 </body>
 
