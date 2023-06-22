@@ -1,21 +1,82 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
 </head>
+
+<style>
+    .steps {
+        position: relative;
+    }
+
+    .steps .step {
+        display: none;
+    }
+
+    .steps .step.show {
+        display: block;
+    }
+
+
+
+    .next_prev {
+        position: absolute;
+        margin-top: 30px;
+    }
+</style>
+
 <body>
-    <div>
-        <div>
-            <input type="text" placeholder="Your Name">
+    <div class="stepContainer">
+        <div class="steps">
+            <div class="step show">
+                <input type="text" placeholder="Your Name">
+            </div>
+            <div class="step ">
+                <input type="text" placeholder="Your Phone">
+            </div>
+            <div class="step ">
+                <input type="text" placeholder="Your Email">
+            </div>
+
         </div>
-        <div>
-            <input type="text" placeholder="Your Phone Number">
-        </div>
-        <div>
-            <input type="text" placeholder="Your E-mail ID">
+
+        <div class="next_prev">
+            <button class="prev">Prev</button>
+            <button class="next">Next</button>
+
         </div>
     </div>
+
+    <script>
+        const showSteps = (n, stepItems) => {
+            for (i = 0; i < stepItems.length; i++) {
+                stepItems[i].classList.remove('show');
+            }
+            // console.log(n, stepItems[stepIndex]);
+            stepItems[n - 1].classList.add('show');
+
+        }
+
+        const steps = document.querySelectorAll('.steps .step');
+        let stepIndex = 0;
+
+        // showSteps(stepIndex, steps);
+
+        const prev = document.querySelector('.next_prev .prev');
+        const next = document.querySelector('.next_prev .next');
+
+        next.addEventListener('click', (e) => {
+console.log(stepIndex);
+            showSteps((stepIndex += 1), steps);
+        });
+
+        prev.addEventListener('click', (e) => {
+            showSteps((stepIndex -= 1), steps);
+        });
+    </script>
 </body>
+
 </html>

@@ -86,15 +86,10 @@
             </div>
         </div>
         <div class="next_prev">
-            <button class="next">Next</button>
             <button class="prev">Prev</button>
+            <button class="next">Next</button>
         </div>
     </div>
-
-    <button onclick="slideTo(0)">Image 1</button>
-    <button onclick="slideTo(1)">Image 2</button>
-    <button onclick="slideTo(2)">Image 3</button>
-    <button onclick="slideTo(3)">Image 4</button>
 
     <script>
 
@@ -113,6 +108,7 @@
 
             for (i = 0; i < slideItems.length; i++) {
                 slideItems[i].classList.remove('show');
+                console.log(slideItems[i]);
             }
 
             slideItems[n - 1].classList.add('show');
@@ -135,11 +131,10 @@
             showSlides(slideIndex -= 1, slides);
         });
 
-        setInterval((index)=>{
+        setInterval((index) => {
             showSlides(slideIndex += 1, slides);
             console.log(index);
-        },3000)
-       
+        }, 3000)
 
     </script>
 
