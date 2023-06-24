@@ -41,27 +41,46 @@
                 <input type="text" placeholder="Your Email">
             </div>
 
+
         </div>
 
         <div class="next_prev">
             <button class="prev">Prev</button>
-            <button class="next">Next</button>
+            <button id="next" class="next">Next</button>
 
         </div>
     </div>
 
     <script>
+        var formStep = 0, stepIndex = 1;
         const showSteps = (n, stepItems) => {
+            // console.log(formStep);
+
+            const showIndex = stepItems[formStep].querySelector('input');
+            //console.log(showIndex);
+            if (showIndex.value == "") {
+                console.log("Input a value");
+                stepIndex -= 1
+                return false;
+            }
+
             for (i = 0; i < stepItems.length; i++) {
                 stepItems[i].classList.remove('show');
             }
-            // console.log(n, stepItems[stepIndex]);
             stepItems[n - 1].classList.add('show');
+            formStep += 1;
+            console.log(formStep, stepItems.length - 1);
+            if (formStep == stepItems.length - 1) {
+
+                document.getElementById("next").innerHTML = "Submit";
+                
+            }
 
         }
 
+
         const steps = document.querySelectorAll('.steps .step');
-        let stepIndex = 0;
+
 
         // showSteps(stepIndex, steps);
 
@@ -69,9 +88,12 @@
         const next = document.querySelector('.next_prev .next');
 
         next.addEventListener('click', (e) => {
-console.log(stepIndex);
+
             showSteps((stepIndex += 1), steps);
+
         });
+
+
 
         prev.addEventListener('click', (e) => {
             showSteps((stepIndex -= 1), steps);
