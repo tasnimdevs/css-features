@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <title>Step Form</title>
+</head>
+
+<style>
+    .steps {
+        position: relative;
+    }
+
+    .steps .step {
+        display: none;
+    }
+
+    .steps .step.show {
+        display: block;
+    }
+
+
+
+    .next_prev {
+        margin-top: 20px;
+    }
+
+    .msg {
+        display: none;
+    }
+
+    .flashMsg {
+        display: block;
+    }
+</style>
+
+<body>
+    <div id="stepContainer" class="p-4 stepContainer max-w-md mx-auto bg-gray-100 rounded-lg shadow-md">
+        <div class="steps">
+            <div class="step show">
+                <input class="w-full p-2 border border-gray-300 rounded-md" type="text" placeholder="Your Name"
+                    name="name">
+            </div>
+            <div class="step ">
+                <input class="w-full p-2 border border-gray-300 rounded-md" type="text" placeholder="Your Phone"
+                    name="phone">
+            </div>
+            <div class="step ">
+                <input class="w-full p-2 border border-gray-300 rounded-md" type="text" placeholder="Your Email"
+                    name="email">
+            </div>
+
+        </div>
+
+        <div class="next_prev  flex justify-between ">
+            <button class="prev p-2 text-white bg-green-500 rounded-md cursor-pointer hover:bg-green-600">Prev</button>
+            <button id="next"
+                class="next p-2 text-white bg-green-500 rounded-md cursor-pointer hover:bg-green-600">Next</button>
+
+        </div>
+    </div>
+
+
+
+    <div id="msg" class="msg p-2 text-white bg-green-500 rounded-md">
+        <h3>Thanks for your information &#128522;</h3>
+    </div>
+
+    <div id="flashMsg" class="msg absolute bottom-8 right-8 p-4 text-white bg-red-500 rounded-md">
+        <p>Input a value</p>
+    </div>
+
+
+    <script>
+        var formStep = 0, stepIndex = 0;
+        const fromData = { name: "", phone: "", email: "" };
+        const showSteps = (n, stepItems) => {
+   
+           if (stepIndex <= stepItems.length) {
+            console.log(stepIndex, stepItems.length);
+
+            for (i = 0; i < stepItems.length; i++) {
+                stepItems[i].classList.remove('show');
+            }
+            stepItems[n - 1].classList.add('show');
+            
+           }
+
+           
+            
+          
+        }
+
+        const steps = document.querySelectorAll('.steps .step');
+        const prev = document.querySelector('.next_prev .prev');
+        const next = document.querySelector('.next_prev .next');
+
+        next.addEventListener('click', (e) => {
+            showSteps((stepIndex += 1), steps);
+
+        });
+
+        prev.addEventListener('click', (e) => {
+            showSteps((stepIndex -= 1), steps);
+        });
+    </script>
+</body>
+
+</html>
