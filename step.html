@@ -31,34 +31,46 @@
     .msg {
         display: none;
     }
+
+    .flashMsg {
+        display: block;
+    }
 </style>
 
 <body>
     <div id="stepContainer" class="p-4 stepContainer max-w-md mx-auto bg-gray-100 rounded-lg shadow-md">
         <div class="steps">
             <div class="step show">
-                <input class="w-full p-2 border border-gray-300 rounded-md" type="text" placeholder="Your Name" name="name">
+                <input class="w-full p-2 border border-gray-300 rounded-md" type="text" placeholder="Your Name"
+                    name="name">
             </div>
             <div class="step ">
-                <input class="w-full p-2 border border-gray-300 rounded-md" type="text" placeholder="Your Phone" name="phone">
+                <input class="w-full p-2 border border-gray-300 rounded-md" type="text" placeholder="Your Phone"
+                    name="phone">
             </div>
             <div class="step ">
-                <input class="w-full p-2 border border-gray-300 rounded-md" type="text" placeholder="Your Email" name="email">
+                <input class="w-full p-2 border border-gray-300 rounded-md" type="text" placeholder="Your Email"
+                    name="email">
             </div>
 
         </div>
 
         <div class="next_prev  flex justify-between ">
             <button class="prev p-2 text-white bg-green-500 rounded-md cursor-pointer hover:bg-green-600">Prev</button>
-            <button id="next" class="next p-2 text-white bg-green-500 rounded-md cursor-pointer hover:bg-green-600">Next</button>
+            <button id="next"
+                class="next p-2 text-white bg-green-500 rounded-md cursor-pointer hover:bg-green-600">Next</button>
 
         </div>
     </div>
 
-    
-    
-    <div id="msg" class="msg absolute bottom-4 right-4 p-2 text-white bg-green-500 rounded-md">
+
+
+    <div id="msg" class="msg p-2 text-white bg-green-500 rounded-md">
         <h3>Thanks for your information &#128522;</h3>
+    </div>
+
+    <div id="flashMsg" class="msg absolute bottom-4 right-4 p-2 text-white bg-red-500 rounded-md">
+        <p>Input a value</p>
     </div>
 
 
@@ -70,34 +82,44 @@
             const showIndex = stepItems[formStep] && stepItems[formStep].querySelector('input');
             if (showIndex) {
                 if (showIndex.value == "") {
-                    console.log("Input a value");
-                    stepIndex -= 1
+                    document.getElementById("flashMsg").classList.remove('msg');
+                    document.getElementById("flashMsg").classList.add('flashMsg');
+                    stepIndex -= 1;
+                    setTimeout(function () {
+                        document.getElementById("flashMsg").classList.remove('flashMsg');
+                        document.getElementById("flashMsg").classList.add('msg');
+                    }, 3000);
                     return false;
-                }
-
-                fromData[showIndex.name] = showIndex.value;
-                console.log(fromData);
-
-                formStep += 1;
-                if (formStep == stepItems.length - 1) {
-                    document.getElementById("next").innerHTML = "Submit";
-                }
-
-                if (formStep < stepItems.length) {
-                    for (i = 0; i < stepItems.length; i++) {
-                        stepItems[i].classList.remove('show');
-                    }
-                    console.log(formStep, stepItems.length);
-                    stepItems[n - 1].classList.add('show');
-                }
-                if (formStep == stepItems.length) {
-                    document.getElementById("stepContainer").classList.add('msg');
-                    document.getElementById("msg").classList.remove('msg');
-
                 }
             }
 
+
+            fromData[showIndex.name] = showIndex.value;
+            console.log(fromData);
+
+            formStep += 1;
+            if (formStep == stepItems.length - 1) {
+                document.getElementById("next").innerHTML = "Submit";
+            }
+
+            if (formStep < stepItems.length) {
+                for (i = 0; i < stepItems.length; i++) {
+                    stepItems[i].classList.remove('show');
+                }
+                console.log(formStep, stepItems.length);
+                stepItems[n - 1].classList.add('show');
+            }
+            if (formStep == stepItems.length) {
+                document.getElementById("stepContainer").classList.add('msg');
+                document.getElementById("msg").classList.remove('msg');
+
+            }
         }
+
+        
+
+
+
 
         const steps = document.querySelectorAll('.steps .step');
         const prev = document.querySelector('.next_prev .prev');
