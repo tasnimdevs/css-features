@@ -69,7 +69,7 @@
         <h3>Thanks for your information &#128522;</h3>
     </div>
 
-    <div id="flashMsg" class="msg absolute bottom-4 right-4 p-2 text-white bg-red-500 rounded-md">
+    <div id="flashMsg" class="msg absolute bottom-8 right-8 p-4 text-white bg-red-500 rounded-md">
         <p>Input a value</p>
     </div>
 
@@ -82,20 +82,21 @@
             const showIndex = stepItems[formStep] && stepItems[formStep].querySelector('input');
             if (showIndex) {
                 if (showIndex.value == "") {
+                    console.log(showIndex.name);
                     document.getElementById("flashMsg").classList.remove('msg');
                     document.getElementById("flashMsg").classList.add('flashMsg');
+                    document.getElementById("flashMsg").innerHTML = `<p>${showIndex.name} cannot be empty</p>`;
                     stepIndex -= 1;
                     setTimeout(function () {
                         document.getElementById("flashMsg").classList.remove('flashMsg');
                         document.getElementById("flashMsg").classList.add('msg');
-                    }, 3000);
+                    }, 2000);
                     return false;
                 }
             }
 
-
             fromData[showIndex.name] = showIndex.value;
-            console.log(fromData);
+            //console.log(fromData);
 
             formStep += 1;
             if (formStep == stepItems.length - 1) {
@@ -108,18 +109,15 @@
                 }
                 console.log(formStep, stepItems.length);
                 stepItems[n - 1].classList.add('show');
+                console.log(stepItems[n - 1]);
             }
+
             if (formStep == stepItems.length) {
                 document.getElementById("stepContainer").classList.add('msg');
                 document.getElementById("msg").classList.remove('msg');
 
             }
         }
-
-        
-
-
-
 
         const steps = document.querySelectorAll('.steps .step');
         const prev = document.querySelector('.next_prev .prev');
