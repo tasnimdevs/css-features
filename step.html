@@ -75,7 +75,7 @@
 
 
     <script>
-        var formStep = 0, stepIndex = 1,showIndexxx;
+        var formStep = 0, stepIndex = 1, showIndexxx;
         const fromData = { name: "", phone: "", email: "" };
         const showSteps = (n, stepItems) => {
             // console.log(formStep);
@@ -97,8 +97,8 @@
 
             fromData[showIndex.name] = showIndex.value;
 
-         
-            
+
+
             formStep += 1;
 
             if (formStep < stepItems.length) {
@@ -118,7 +118,7 @@
 
             if (formStep == stepItems.length - 1) {
                 document.getElementById("next").innerHTML = "Submit";
-            }else {
+            } else {
                 document.getElementById("next").innerHTML = "Next";
 
             }

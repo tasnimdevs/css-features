@@ -22,8 +22,6 @@
         display: block;
     }
 
-
-
     .next_prev {
         margin-top: 20px;
     }
@@ -76,22 +74,47 @@
 
     <script>
         var formStep = 0, stepIndex = 0;
+        let notice = document.getElementById("flashMsg");
         const fromData = { name: "", phone: "", email: "" };
         const showSteps = (n, stepItems) => {
-   
-           if (stepIndex <= stepItems.length) {
-            console.log(stepIndex, stepItems.length);
+            if (n < 1) return;
+            console.log(n, stepIndex);
 
-            for (i = 0; i < stepItems.length; i++) {
-                stepItems[i].classList.remove('show');
+
+
+            // console.log(stepItems[n].querySelector('input').value);
+
+            const stepData = stepItems[n].querySelector('input');
+            console.log(stepData);
+
+            if (stepData.value == "") {
+                notice.classList.remove('msg');
+                setTimeout(()=>{
+                    notice.classList.add('msg');
+                },3000);
+                return false;
             }
-            stepItems[n - 1].classList.add('show');
-            
-           }
 
-           
-            
-          
+            if (stepIndex <= stepItems.length) {
+                for (i = 0; i < stepItems.length; i++) {
+                    stepItems[i].classList.remove('show');
+                }
+                console.log(stepIndex+=n);
+                stepItems[n].classList.add('show');
+
+            }
+
+            if (stepIndex > stepItems.length) {
+                document.getElementById("stepContainer").classList.add('msg');
+                document.getElementById("msg").classList.remove('msg');
+            }
+
+            if (stepIndex == stepItems.length) {
+                document.getElementById("next").innerHTML = "Submit";
+            } else {
+                document.getElementById("next").innerHTML = "Next";
+
+            }
         }
 
         const steps = document.querySelectorAll('.steps .step');
@@ -99,12 +122,12 @@
         const next = document.querySelector('.next_prev .next');
 
         next.addEventListener('click', (e) => {
-            showSteps((stepIndex += 1), steps);
+            showSteps(1, steps);
 
         });
 
         prev.addEventListener('click', (e) => {
-            showSteps((stepIndex -= 1), steps);
+            showSteps(-1, steps);
         });
     </script>
 </body>
