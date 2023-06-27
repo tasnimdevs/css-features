@@ -16,6 +16,7 @@
         display: none;
     }
 </style>
+
 <body>
 
     <form id="form1" class="show" onsubmit="myFunction(event)">
@@ -24,25 +25,37 @@
     </form>
 
     <form id="form2" class="hidden" onsubmit="myFunction(event)">
-        <input type="text" name="name" placeholder="Your Phone Number">
+        <input type="text" name="phone" placeholder="Your Phone Number">
         <input type="submit" value="Submit">
     </form>
 
     <form id="form3" class="hidden" onsubmit="myFunction(event)">
-        <input type="text" name="name" placeholder="Your Email">
+        <input type="text" name="email" placeholder="Your Email">
         <input type="submit" value="Submit">
     </form>
+    <div id="eror">
 
-
+    </div>
     <script>
         function myFunction(event) {
             event.preventDefault();
 
-            event.target.classList.add('hidden');
 
-            const nextElement = event.target.nextElementSibling.classList.remove('hidden');
-            console.log(nextElement);
+            const currentElement = event.target;
+            console.log(currentElement);
+            const nextElement = event.target.nextElementSibling;
+            const currentData = currentElement.querySelector('input');
+            if (currentData.value == "") {
+                document.getElementById("eror").classList.remove('hidden');
 
+                document.getElementById("eror").innerHTML = `<p> Enter your ${currentData.name}</p>`;
+            } else {
+                document.getElementById("eror").classList.add('hidden');
+
+                currentElement.classList.add('hidden');
+
+                nextElement.classList.remove('hidden');
+            }
         }
     </script>
 </body>
