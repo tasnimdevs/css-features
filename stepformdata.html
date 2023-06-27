@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<style>
+    .show {
+        display: block;
+    }
+
+    .hidden {
+        display: none;
+    }
+</style>
+<body>
+
+    <form id="form1" class="show" onsubmit="myFunction(event)">
+        <input type="text" name="name" placeholder="Your Name">
+        <input type="submit" value="Submit">
+    </form>
+
+    <form id="form2" class="hidden" onsubmit="myFunction(event)">
+        <input type="text" name="name" placeholder="Your Phone Number">
+        <input type="submit" value="Submit">
+    </form>
+
+    <form id="form3" class="hidden" onsubmit="myFunction(event)">
+        <input type="text" name="name" placeholder="Your Email">
+        <input type="submit" value="Submit">
+    </form>
+
+
+    <script>
+        function myFunction(event) {
+            event.preventDefault();
+
+            event.target.classList.add('hidden');
+
+            const nextElement = event.target.nextElementSibling.classList.remove('hidden');
+            console.log(nextElement);
+
+        }
+    </script>
+</body>
+
+</html>
