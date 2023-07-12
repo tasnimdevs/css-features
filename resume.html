@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <title>Step Form Data </title>
+</head>
+
+<style>
+    .show {
+        display: block;
+    }
+
+    .hidden {
+        display: none;
+    }
+</style>
+
+<body>
+
+    <div class="p-4  max-w-md mx-auto bg-gray-100 rounded-lg shadow-md">
+        <form id="form1" class="show " onsubmit="myFunction(event)">
+         <div class="flex justify-between gap-2">
+            <input type="text" name="firstName" placeholder="First Name"
+            class="w-full mt-2 p-2 border border-gray-300 rounded-md">
+        <input type="text" name="lastName" placeholder="Last Name"
+            class="w-full mt-2 p-2 border border-gray-300 rounded-md">
+         </div>
+            <input type="text" name="userName" placeholder="User Name"
+                class="w-full mt-2 p-2 border border-gray-300 rounded-md">
+            <input type="email" name="email" placeholder="Email"
+                class="w-full mt-2 p-2 border border-gray-300 rounded-md">
+            <input type="phone" name="phone" placeholder="Phone"
+                class="w-full mt-2 p-2 border border-gray-300 rounded-md">
+            <input type="submit" value="Submit"
+                class="p-2 mt-2 text-white bg-green-500 rounded-md cursor-pointer hover:bg-green-600">
+        </form>
+
+        <form id="form2" class="hidden " onsubmit="myFunction(event)">
+            <input type="text" name="fatherName" placeholder="Father Name"
+                class="w-full mt-2 p-2 border border-gray-300 rounded-md">
+            <input type="text" name="motherName" placeholder="Mother Name"
+                class="w-full  mt-2 p-2 border border-gray-300 rounded-md">
+            <input type="text" name="address" placeholder="Address"
+                class="w-full mt-2 p-2 border border-gray-300 rounded-md">
+            <input type="date" name="dateOfBirth" placeholder="Date of Birth"
+                class="w-full mt-2 p-2 border border-gray-300 rounded-md">
+            <input type="text" name="maritalStatus" placeholder="Marital Status"
+                class="w-full mt-2 p-2 border border-gray-300 rounded-md">
+
+            <div class="flex justify-between">
+                <div>
+                    <p>Gender:</p>
+                      <input type="radio" name="gender" value="male">
+                      <label for="male">Male</label><br>
+                      <input type="radio" name="gender" value="female">
+                      <label for="female">Female</label><br>
+                </div>
+                <div>
+                    <p>Marital Status:</p>
+                      <input type="radio" name="maritalStatus" value="married">
+                      <label for="married">Marrried</label><br>
+                      <input type="radio" name="maritalStatus" value="unmarried">
+                      <label for="unmarried">Unmarried</label><br>
+                </div>
+            </div>
+            <input type="submit" value="Submit"
+                class="p-2 mt-2 text-white bg-green-500 rounded-md cursor-pointer hover:bg-green-600">
+        </form>
+
+        <form id="form3" class="hidden" onsubmit="myFunction(event)">
+            <input type="text" name="education" placeholder="Education"
+                class="w-full mt-2 p-2 border border-gray-300 rounded-md">
+            <input type="text" name="experience" placeholder="Experience"
+                class="w-full mt-2 p-2 border border-gray-300 rounded-md">
+            <input type="text" name="other" placeholder="Other"
+                class="w-full mt-2 p-2 border border-gray-300 rounded-md">
+            <input type="submit" value="Submit"
+                class="p-2 mt-2 text-white bg-green-500 rounded-md cursor-pointer hover:bg-green-600">
+        </form>
+
+        <form id="form4" class="hidden" onsubmit="myFunction(event)">
+            <input type="checkbox" name="yourStatus" value="Smooking">
+            <label for="smooking"> Smooking</label><br>
+            <input type="checkbox" name="yourStatus" value="friendly">
+            <label for="friendly"> Friendly</label><br>
+            <input type="checkbox" name="yourStatus" value="attentionDetail">
+            <label for="attentionDetail"> Attention to Detail</label><br>
+            <input type="checkbox" name="yourStatus" value="dedication">
+            <label for="dedication"> Dedication</label><br>
+
+            <input type="submit" value="Submit"
+                class="p-2 mt-2 text-white bg-green-500 rounded-md cursor-pointer hover:bg-green-600">
+        </form>
+
+
+
+        <form id="form5" class="hidden" onsubmit="myFunction(event)">
+            <input type="time" name="officeTime" placeholder="Office Time"
+                class="w-full mt-2 p-2 border border-gray-300 rounded-md">
+            <input type="text" name="skillSet" placeholder="Skill Set"
+                class="w-full mt-2 p-2 border border-gray-300 rounded-md">
+            <input type="text" name="devTools" placeholder="Dev Tools"
+                class="w-full mt-2 p-2 border border-gray-300 rounded-md">
+            <div>
+                <p>Agreement</p>
+                  <input type="radio" name="agree" value="agree">
+                  <label for="agree">Agree</label><br>
+                  <input type="radio" name="agree" value="disagree">
+                  <label for="disagree">Disagree</label><br>
+            </div>
+            <input type="submit" value="Submit"
+                class="p-2 mt-2 text-white bg-green-500 rounded-md cursor-pointer hover:bg-green-600">
+        </form>
+
+        <div id="eror" class="text-red-500 mt-2">
+
+        </div>
+    </div>
+    <script>
+        var form1 = document.getElementById("form1");
+        var form2 = document.getElementById("form2");
+        var form3 = document.getElementById("form3");
+        console.log(form1, form2, form3);
+
+        const allFormdata = {};
+
+        form1.addEventListener('submit', (e) => {
+            e.preventDefault();
+            const form1Data = new FormData(form1)
+            Object.assign(allFormdata, Object.fromEntries(form1Data));
+            console.log(allFormdata);
+        })
+        form2.addEventListener('submit', (e) => {
+            e.preventDefault();
+            const form2Data = new FormData(form2)
+            Object.assign(allFormdata, Object.fromEntries(form2Data));
+            console.log(allFormdata);
+        })
+        form3.addEventListener('submit', (e) => {
+            e.preventDefault();
+            const form3Data = new FormData(form3)
+            Object.assign(allFormdata, Object.fromEntries(form3Data));
+           console.log(allFormdata);
+        })
+        form4.addEventListener('submit', (e) => {
+            e.preventDefault();
+            const form4Data = new FormData(form4)
+            Object.assign(allFormdata, Object.fromEntries(form4Data));
+            console.log(allFormdata);
+        })
+        form5.addEventListener('submit', (e) => {
+            e.preventDefault();
+            const form5Data = new FormData(form5)
+            Object.assign(allFormdata, Object.fromEntries(form5Data));
+            console.log(allFormdata);
+        })
+
+
+
+
+
+
+
+
+
+
+
+        /* 
+        firstName 
+        lastName
+        userName
+        email
+        phone
+        
+        
+        fatherName
+        motherName
+        address
+        gender
+        dateOfBirth
+        marritalStatus
+        
+        education
+        experience
+        other
+        
+        yourStatus (checkbox)
+        - smooking
+        - friendly
+        - attentionDetail
+        - dedication
+        
+        officeTime
+        skillSet
+        devTools
+        agreement
+        */
+
+        function myFunction(event) {
+            event.preventDefault();
+
+
+            const currentElement = event.target;
+
+            const nextElement = event.target.nextElementSibling;
+            const currentData = currentElement.querySelector('input');
+            console.log(currentData);
+            if (currentData.value == "") {
+                document.getElementById("eror").classList.remove('hidden');
+
+                document.getElementById("eror").innerHTML = `<p> Enter your Information</p>`;
+            } else {
+                document.getElementById("eror").classList.add('hidden');
+
+                currentElement.classList.add('hidden');
+
+                nextElement.classList.remove('hidden');
+            }
+        }
+    </script>
+</body>
+
+</html>
