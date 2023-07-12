@@ -4,6 +4,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.tailwindcss.com"></script>
+
     <title>Step Form Data </title>
 </head>
 
@@ -19,22 +21,29 @@
 
 <body>
 
-    <form id="form1" class="show" onsubmit="myFunction(event)">
-        <input type="text" name="name" placeholder="Your Name">
-        <input type="submit" value="Submit">
-    </form>
+    <div class="p-4  max-w-md mx-auto bg-gray-100 rounded-lg shadow-md">
+        <form id="form1" class="show " onsubmit="myFunction(event)">
+            <input type="text" name="name" placeholder="Your Name" class="w-full p-2 border border-gray-300 rounded-md">
+            <input type="submit" value="Submit"
+                class="p-2 mt-2 text-white bg-green-500 rounded-md cursor-pointer hover:bg-green-600">
+        </form>
 
-    <form id="form2" class="hidden" onsubmit="myFunction(event)">
-        <input type="text" name="phone" placeholder="Your Phone Number">
-        <input type="submit" value="Submit">
-    </form>
+        <form id="form2" class="hidden " onsubmit="myFunction(event)">
+            <input type="text" name="phone" placeholder="Your Phone Number"
+                class="w-full p-2 border border-gray-300 rounded-md">
+            <input type="submit" value="Submit"
+                class="p-2 mt-2 text-white bg-green-500 rounded-md cursor-pointer hover:bg-green-600">
+        </form>
 
-    <form id="form3" class="hidden" onsubmit="myFunction(event)">
-        <input type="text" name="email" placeholder="Your Email">
-        <input type="submit" value="Submit">
-    </form>
-    <div id="eror">
+        <form id="form3" class="hidden" onsubmit="myFunction(event)">
+            <input type="text" name="email" placeholder="Your Email"
+                class="w-full p-2 border border-gray-300 rounded-md">
+            <input type="submit" value="Submit"
+                class="p-2 mt-2 text-white bg-green-500 rounded-md cursor-pointer hover:bg-green-600">
+        </form>
+        <div id="eror" class="text-red-500 mt-2">
 
+        </div>
     </div>
     <script>
         function myFunction(event) {
