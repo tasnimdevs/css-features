@@ -134,6 +134,14 @@
                     <th>Date of Birth</th>
                     <th>Gender</th>
                     <th>Merital Status</th>
+                    <th>Education</th>
+                    <th>Experience</th>
+                    <th>Other</th>
+                    <th>Your Status</th>
+                    <th>Office Time </th>
+                    <th>Skill Test</th>
+                    <th>Devtools</th>
+                    <th>Agreement</th>
             </thead>
 
             <tbody class="bg-white divide-y divide-gray-200">
@@ -147,22 +155,31 @@
         function htmlViewFunction(data) {
             return data.map((item, index) => {
                 return `
-                <tr>
-                    <td>${index + 1}</td>
-                    <td>${item.firstName}</td>
-                    <td>${item.lastName}</td>
-                    <td>${item.userName}</td>
-                    <td>${item.Email}</td>
-                    <td>${item.phone}</td>
-                    <td>${item.fatherName}</td>
-                    <td>${item.motherName}</td>
-                    <td>${item.addres}</td>
-                    <td>${item.dateofBirth}</td>
-                    <td>${item.gender}</td>
-                    <td>${item.maritalStatus}</td>
-                </tr>`;
+        <tr>
+            <td>${index + 1}</td>
+            <td>${item.firstName}</td>
+            <td>${item.lastName}</td>
+            <td>${item.userName}</td>
+            <td>${item.email}</td>
+            <td>${item.phone}</td>
+            <td>${item.fatherName}</td>
+            <td>${item.motherName}</td>
+            <td>${item.address}</td>
+            <td>${item.dateOfBirth}</td>
+            <td>${item.gender}</td>
+            <td>${item.maritalStatus}</td>
+            <td>${item.education}</td>
+            <td>${item.experience}</td>
+            <td>${item.other}</td>
+            <td>${item.yourStatus}</td>
+            <td>${item.officeTime}</td>
+            <td>${item.skillSet}</td>
+            <td>${item.devTools}</td>
+            <td>${item.agree}</td>
+        </tr>`;
             }).join('');
         }
+
 
 
         var form1 = document.getElementById("form1");
@@ -174,8 +191,13 @@
 
         let data = JSON.parse(localStorage.getItem("profile"));
 
+        let output = document.getElementById('output').querySelector('tbody');
+
         const allFormdata = {};
 
+        if (data) {
+            output.innerHTML = htmlViewFunction(data);
+        }
 
         form1.addEventListener('submit', (e) => {
             e.preventDefault();
@@ -211,13 +233,6 @@
             localStorage.setItem("profile", JSON.stringify(data));
             output.innerHTML = htmlViewFunction(data);
         })
-
-
-
-
-
-
-
 
         /* 
         firstName 
