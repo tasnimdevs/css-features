@@ -83,6 +83,7 @@
             console.log(htmlViewFunction(data));
             output.innerHTML = htmlViewFunction(data);
         }
+
         function deleteItem(id) {
             console.log(`Delete this ${id}`);
             data.splice(id, 1);
@@ -110,34 +111,24 @@
 
         }
 
-
         var form = document.getElementById('myForm');
         form.addEventListener('submit', function (event) {
-
-            //get the data-editId attribute
             var editId = form.getAttribute('data-editId');
-
             event.preventDefault();
-            // Get form data
             var formData = new FormData(form);
-
-            // Convert form data to an object
             var dataArr = {};
             for (var pair of formData.entries()) {
                 dataArr[pair[0]] = pair[1];
             }
+            console.log(dataArr);
 
-            //if edit id has value this will work 
             if (editId) {
                 data[editId] = dataArr;
-
-                //else edit id doesn't have value this will work
-            }
-            
-            else {
+            }else {
                 data = data ?? [];
                 data.push(dataArr);
             }
+
             localStorage.setItem("profile", JSON.stringify(data));
             output.innerHTML = htmlViewFunction(data);
         });

@@ -21,49 +21,47 @@
 
 <body>
 
-    <div class="p-4  max-w-md mx-auto bg-gray-100 rounded-lg shadow-md">
+    <div id="resume" class="p-4  max-w-md mx-auto bg-gray-100 rounded-lg shadow-md">
         <form id="form1" class="show " onsubmit="myFunction(event)">
-         <div class="flex justify-between gap-2">
-            <input type="text" name="firstName" placeholder="First Name"
-            class="w-full mt-2 p-2 border border-gray-300 rounded-md">
-        <input type="text" name="lastName" placeholder="Last Name"
-            class="w-full mt-2 p-2 border border-gray-300 rounded-md">
-         </div>
-            <input type="text" name="userName" placeholder="User Name"
+            <div class="flex justify-between gap-2">
+                <input type="text" name="firstName" id="firstName" placeholder="First Name"
+                    class="w-full mt-2 p-2 border border-gray-300 rounded-md">
+                <input type="text" name="lastName" id="lastName" placeholder="Last Name"
+                    class="w-full mt-2 p-2 border border-gray-300 rounded-md">
+            </div>
+            <input type="text" name="userName" id="userName" placeholder="User Name"
                 class="w-full mt-2 p-2 border border-gray-300 rounded-md">
-            <input type="email" name="email" placeholder="Email"
+            <input type="email" name="email" id="email" placeholder="Email"
                 class="w-full mt-2 p-2 border border-gray-300 rounded-md">
-            <input type="phone" name="phone" placeholder="Phone"
+            <input type="phone" name="phone" id="phone" placeholder="Phone"
                 class="w-full mt-2 p-2 border border-gray-300 rounded-md">
             <input type="submit" value="Submit"
-                class="p-2 mt-2 text-white bg-green-500 rounded-md cursor-pointer hover:bg-green-600">
+                class="p-2 mt-2 text-white  bg-green-500 rounded-md cursor-pointer hover:bg-green-600">
         </form>
 
         <form id="form2" class="hidden " onsubmit="myFunction(event)">
-            <input type="text" name="fatherName" placeholder="Father Name"
+            <input type="text" name="fatherName" id="fatherName" placeholder="Father Name"
                 class="w-full mt-2 p-2 border border-gray-300 rounded-md">
-            <input type="text" name="motherName" placeholder="Mother Name"
+            <input type="text" name="motherName" id="motherName" placeholder="Mother Name"
                 class="w-full  mt-2 p-2 border border-gray-300 rounded-md">
-            <input type="text" name="address" placeholder="Address"
+            <input type="text" name="address" id="address" placeholder="Address"
                 class="w-full mt-2 p-2 border border-gray-300 rounded-md">
-            <input type="date" name="dateOfBirth" placeholder="Date of Birth"
-                class="w-full mt-2 p-2 border border-gray-300 rounded-md">
-            <input type="text" name="maritalStatus" placeholder="Marital Status"
+            <input type="date" name="dateOfBirth" id="dateOfBirth" placeholder="Date of Birth"
                 class="w-full mt-2 p-2 border border-gray-300 rounded-md">
 
             <div class="flex justify-between">
                 <div>
                     <p>Gender:</p>
-                      <input type="radio" name="gender" value="male">
+                      <input type="radio" name="gender" id="gender" value="male">
                       <label for="male">Male</label><br>
-                      <input type="radio" name="gender" value="female">
+                      <input type="radio" name="gender" id="gender" value="female">
                       <label for="female">Female</label><br>
                 </div>
                 <div>
                     <p>Marital Status:</p>
-                      <input type="radio" name="maritalStatus" value="married">
+                      <input type="radio" name="maritalStatus" id="maritalStatus" value="married">
                       <label for="married">Marrried</label><br>
-                      <input type="radio" name="maritalStatus" value="unmarried">
+                      <input type="radio" name="maritalStatus" id="maritalStatus" value="unmarried">
                       <label for="unmarried">Unmarried</label><br>
                 </div>
             </div>
@@ -72,11 +70,11 @@
         </form>
 
         <form id="form3" class="hidden" onsubmit="myFunction(event)">
-            <input type="text" name="education" placeholder="Education"
+            <input type="text" name="education" id="education" placeholder="Education"
                 class="w-full mt-2 p-2 border border-gray-300 rounded-md">
-            <input type="text" name="experience" placeholder="Experience"
+            <input type="text" name="experience" id="experience" placeholder="Experience"
                 class="w-full mt-2 p-2 border border-gray-300 rounded-md">
-            <input type="text" name="other" placeholder="Other"
+            <input type="text" name="other" id="other" placeholder="Other"
                 class="w-full mt-2 p-2 border border-gray-300 rounded-md">
             <input type="submit" value="Submit"
                 class="p-2 mt-2 text-white bg-green-500 rounded-md cursor-pointer hover:bg-green-600">
@@ -120,47 +118,99 @@
 
         </div>
     </div>
+    <div id="output" class="max-w-1/2 p-4 mx-auto bg-gray-100 rounded-lg shadow-md">
+        <table class="w-full divide-y divide-gray-200">
+            <thead>
+                <tr>
+                    <th>SL</th>
+                    <th>First Name</th>
+                    <th>Last Name</th>
+                    <th>User Name</th>
+                    <th>Email</th>
+                    <th>phone</th>
+                    <th>Father Name</th>
+                    <th>Mother Name</th>
+                    <th>Address</th>
+                    <th>Date of Birth</th>
+                    <th>Gender</th>
+                    <th>Merital Status</th>
+            </thead>
+
+            <tbody class="bg-white divide-y divide-gray-200">
+
+            </tbody>
+
+        </table>
+    </div>
     <script>
+
+        function htmlViewFunction(data) {
+            return data.map((item, index) => {
+                return `
+                <tr>
+                    <td>${index + 1}</td>
+                    <td>${item.firstName}</td>
+                    <td>${item.lastName}</td>
+                    <td>${item.userName}</td>
+                    <td>${item.Email}</td>
+                    <td>${item.phone}</td>
+                    <td>${item.fatherName}</td>
+                    <td>${item.motherName}</td>
+                    <td>${item.addres}</td>
+                    <td>${item.dateofBirth}</td>
+                    <td>${item.gender}</td>
+                    <td>${item.maritalStatus}</td>
+                </tr>`;
+            }).join('');
+        }
+
+
         var form1 = document.getElementById("form1");
         var form2 = document.getElementById("form2");
         var form3 = document.getElementById("form3");
-        console.log(form1, form2, form3);
+        var form4 = document.getElementById("form4");
+        var form5 = document.getElementById("form5");
+        // console.log(form1, form2, form3, form4, form5);
+
+        let data = JSON.parse(localStorage.getItem("profile"));
 
         const allFormdata = {};
+
 
         form1.addEventListener('submit', (e) => {
             e.preventDefault();
             const form1Data = new FormData(form1)
             Object.assign(allFormdata, Object.fromEntries(form1Data));
-            console.log(allFormdata);
+            //console.log(allFormdata);
         })
         form2.addEventListener('submit', (e) => {
             e.preventDefault();
             const form2Data = new FormData(form2)
             Object.assign(allFormdata, Object.fromEntries(form2Data));
-            console.log(allFormdata);
+            //console.log(allFormdata);
         })
         form3.addEventListener('submit', (e) => {
             e.preventDefault();
             const form3Data = new FormData(form3)
             Object.assign(allFormdata, Object.fromEntries(form3Data));
-           console.log(allFormdata);
+            // console.log(allFormdata);
         })
         form4.addEventListener('submit', (e) => {
             e.preventDefault();
             const form4Data = new FormData(form4)
             Object.assign(allFormdata, Object.fromEntries(form4Data));
-            console.log(allFormdata);
+            // console.log(allFormdata);
         })
         form5.addEventListener('submit', (e) => {
             e.preventDefault();
             const form5Data = new FormData(form5)
             Object.assign(allFormdata, Object.fromEntries(form5Data));
-            console.log(allFormdata);
+            //console.log(allFormdata);
+            data = data ?? [];
+            data.push(allFormdata);
+            localStorage.setItem("profile", JSON.stringify(data));
+            output.innerHTML = htmlViewFunction(data);
         })
-
-
-
 
 
 
@@ -175,7 +225,6 @@
         userName
         email
         phone
-        
         
         fatherName
         motherName
@@ -203,7 +252,6 @@
         function myFunction(event) {
             event.preventDefault();
 
-
             const currentElement = event.target;
 
             const nextElement = event.target.nextElementSibling;
@@ -221,6 +269,7 @@
                 nextElement.classList.remove('hidden');
             }
         }
+
     </script>
 </body>
 
