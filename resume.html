@@ -251,7 +251,7 @@
         function htmlViewFunction(data) {
             return data.map((item, index) => {
                 return `
-        <tr>
+            <tr>
             <td>${index + 1}</td>
             <td>${item.firstName + " " + item.lastName}</td>
             <td>${item.email}</td>
@@ -264,7 +264,7 @@
             <td>${item.officeTime}</td>
             <td>${item.skillSet}</td>
             <td>${item.agree}</td>
-        </tr>`;
+          </tr>`;
             }).join('');
         }
 
