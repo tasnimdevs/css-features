@@ -210,6 +210,12 @@
         </div>
     </div>
     <div id="output" class="mt-6 max-w-1/2 p-4 mx-auto bg-gray-100 rounded-lg shadow-md">
+        <ul class="list-none inline-flex gap-2">
+            <li>PHP</li>
+            <li>Java Script</li>
+            <li>Node</li>
+            <li>Java</li>
+        </ul>
         <table class="w-full divide-y divide-gray-200">
             <thead>
                 <tr>
@@ -337,13 +343,15 @@
             location.reload();
         })
 
+        function getDataset() {
+            var dataset = JSON.parse(localStorage.getItem("cvInfo")) || [];
+            return dataset;
+        }
 
+        var dataset = getDataset();
+        var languages = dataset.map(item => item.language);
+        console.log(languages);
 
-        /* 
-        1 get data 
-        2 pressesing data
-        3 view data 
-         */
 
         function formProcessing(formData) {
             var fieldMap = {};
@@ -367,7 +375,7 @@
                 } else {
                     result[fieldName] = fieldMap[fieldName];
                 }
-                console.log(result);
+                // console.log(result);
             }
 
             return result;
@@ -375,4 +383,5 @@
         }
     </script>
 </body>
+
 </html>
