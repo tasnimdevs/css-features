@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://cdn.tailwindcss.com"></script>
 
-    <title>Step Form Data </title>
+    <title>CV </title>
 </head>
 
 <style>
@@ -205,8 +205,8 @@
 
 
 
-        <div id="eror" class="text-red-500 mt-2">
-
+        <div id="eror" class="hidden text-red-500 mt-2">
+            <p>Input invalid</p>
         </div>
     </div>
     <div id="output" class="mt-6 max-w-1/2 p-4 mx-auto bg-gray-100 rounded-lg shadow-md">
@@ -234,160 +234,28 @@
         </table>
     </div>
     <script>
-        var form1 = document.getElementById("form1");
-        var form2 = document.getElementById("form2");
-        var form3 = document.getElementById("form3");
-        var form4 = document.getElementById("form4");
-        var form5 = document.getElementById("form5");
-        // console.log(form1, form2, form3, form4, form5);
-
-
-        let data = JSON.parse(localStorage.getItem("profile"));
-
-        let output = document.getElementById('output').querySelector('tbody');
-
-
-
-        function htmlViewFunction(data) {
-            return data.map((item, index) => {
-                return `
-        <tr>
-            <td>${index + 1}</td>
-            <td>${item.firstName + " " + item.lastName}</td>
-            <td>${item.email}</td>
-            <td>${item.phone}</td>
-            <td>${item.education}</td>
-            <td>${item.experience}</td>
-            <td>${item.jobType}</td>
-            <td>${item.language}</td>
-            <td>${item.yourStatus}</td>
-            <td>${item.officeTime}</td>
-            <td>${item.skillSet}</td>
-            <td>${item.agree}</td>
-        </tr>`;
-            }).join('');
-        }
-
         function myFunction(event) {
             event.preventDefault();
-            let submitter = event.submitter;
-            submitter.querySelector('svg').classList.remove('hidden');
-            // console.log(submitter.querySelector('svg'));
             const currentElement = event.target;
             const nextElement = event.target.nextElementSibling;
             const currentData = currentElement.querySelector('input');
 
             if (currentData.value == "") {
                 document.getElementById("eror").classList.remove('hidden');
-                document.getElementById("eror").innerHTML = `<p> Enter your Information</p>`;
             } else {
-                document.getElementById("eror").classList.add('hidden');
-                setTimeout(() => {
-                    currentElement.classList.add('hidden');
-                    nextElement.classList.remove('hidden');
-                    submitter.querySelector('svg').classList.add('hidden');
-
-                }, 1000);
+                currentElement.classList.add('hidden');
+                nextElement.classList.remove('hidden');
             }
         }
 
         function activateForm(index) {
             let allForm = document.querySelectorAll('form');
-            //console.log(allForm);
-
+        
             for (let i = 0; i < allForm.length; i++) {
                 allForm[i].classList.add('hidden');
             }
             allForm[index].classList.remove('hidden');
         }
-
-        function formProcessing(formData) {
-            var fieldMap = {};
-
-            for (var field of formData.entries()) {
-                var fieldName = field[0];
-                var fieldValue = field[1];
-
-                if (!fieldMap[fieldName]) {
-                    fieldMap[fieldName] = [];
-                }
-
-                fieldMap[fieldName].push(fieldValue);
-            }
-            console.log(fieldMap);
-            var result = {};
-
-            for (var fieldName in fieldMap) {
-                if (fieldMap[fieldName].length === 1) {
-                    result[fieldName] = fieldMap[fieldName][0];
-                } else {
-                    result[fieldName] = fieldMap[fieldName];
-                }
-                console.log(result);
-            }
-
-            return result;
-
-        }
-
-        const allFormdata = [];
-        const allFormdataObj = {};
-
-        if (data) {
-            // console.log(data);
-            output.innerHTML = htmlViewFunction(data);
-        }
-
-        form1.addEventListener('submit', (e) => {
-            e.preventDefault();
-            const form1Data = new FormData(form1);
-            let formEntries = formProcessing(form1Data);
-            Object.assign(allFormdataObj, formEntries);
-            console.log(allFormdataObj);
-        })
-        form2.addEventListener('submit', (e) => {
-            e.preventDefault();
-            const form2Data = new FormData(form2);
-            let formEntries = formProcessing(form2Data);
-            Object.assign(allFormdataObj, formEntries);
-            console.log(allFormdata);
-        })
-        form3.addEventListener('submit', (e) => {
-            e.preventDefault();
-            const form3Data = new FormData(form3)
-            let formEntries = formProcessing(form3Data);
-            Object.assign(allFormdataObj, formEntries);
-            // console.log(allFormdata);
-        })
-        form4.addEventListener('submit', (e) => {
-            e.preventDefault();
-            const form4Data = new FormData(form4);
-            let formEntries = formProcessing(form4Data);
-            Object.assign(allFormdataObj, formEntries);
-            // console.log(allFormdata);
-        })
-        form5.addEventListener('submit', (e) => {
-            e.preventDefault();
-            const form5Data = new FormData(form5);
-            let formEntries = formProcessing(form5Data);
-            Object.assign(allFormdataObj, formEntries);
-            data = data ?? [];
-            console.log(allFormdataObj);
-
-            /* let finalFormdata = allFormdata.reduce(function (acc, curr) {
-                return acc.concat(curr);
-            }, data);
-            */
-
-            data.push(allFormdataObj);
-
-            // var mergedData = Object.assign({}, ...data);
-
-            localStorage.setItem("profile", JSON.stringify(data));
-            output.innerHTML = htmlViewFunction(data);
-            form1.style.display = "block";
-        })
-
 
     </script>
 </body>
