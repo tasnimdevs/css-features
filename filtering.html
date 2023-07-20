@@ -373,7 +373,6 @@
             });
             var dataset = getDataset(languages);
 
-            // languageOutput.innerHTML = dataset.join(', '); // Join the dataset to display the languages in a comma-separated format
 
             // Add an event listener for each language checkbox
             dataset.forEach(language => {
@@ -382,8 +381,6 @@
                 checkbox.name = 'selectedLanguage';
                 checkbox.value = language;
                 languageOutput.appendChild(checkbox);
-
-
 
                 const label = document.createElement('label');
                 label.htmlFor = language;
